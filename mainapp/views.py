@@ -3,6 +3,9 @@ import json
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from datetime import datetime
+from django.shortcuts import get_object_or_404
+from mainapp.models import News
+
 
 # Create your views here.
 
@@ -51,40 +54,21 @@ class LoginView(TemplateView):
 class NewsView(TemplateView):
     template_name = 'mainapp/news.html'
 
-    def openjson(self):
-        with open('my.json', 'r') as f:
-            my_json_obj = json.load(f)
-        return my_json_obj
+    # def openjson(self):
+    #     with open('static/json/my.json', 'r') as f:
+    #         my_json_obj = json.load(f)
+    #     return my_json_obj
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
-        context_data['object_list'] = self.openjson()
+        # context_data['object_list'] = self.openjson()
+        context_data['object_list'] = News.objects.filter(deleted=False)
+        return context_data
 
-        # context_data['object_list'] = [
-        #     {
-        #         'title': 'Новость 1',
-        #         'preview': 'Предварительное описание новости 1',
-        #         'data': datetime.now()
-        #     },
-        #     {
-        #         'title': 'Новость 2',
-        #         'preview': 'Предварительное описание новости 2',
-        #         'data': datetime.now()
-        #     },
-        #     {
-        #         'title': 'Новость 3',
-        #         'preview': 'Предварительное описание новости 3',
-        #         'data': datetime.now()
-        #     },
-        #     {
-        #         'title': 'Новость 4',
-        #         'preview': 'Предварительное описание новости 4',
-        #         'data': datetime.now()
-        #     },
-        #     {
-        #         'title': 'Новость 5',
-        #         'preview': 'Предварительное описание новости 5',
-        #         'data': datetime.now()
-        #     },
-        # ]
+class NewsDetail(TemplateView):
+    template_name = 'mainapp/news_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['object'] = get_object_or_404(News, pk=self.kwargs.get("pk"))
         return context_data
