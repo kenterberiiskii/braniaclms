@@ -1,5 +1,7 @@
 from django.db import models
 
+NULLABLE = {'blank': True, 'null': True}
+
 class News(models.Model):
     title = models.CharField(max_length=256, verbose_name='Заголовок')
     preamble = models.CharField(max_length=1024, verbose_name='Интро')

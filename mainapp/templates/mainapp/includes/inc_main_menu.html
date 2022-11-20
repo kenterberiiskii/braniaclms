@@ -33,6 +33,18 @@
                             {% endif %}"
                            href="{% url 'mainapp:contacts' %}">Контакты</a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'authapp:edit' %}">{{ user.first_name|default:user.username }}</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'authapp:logout' %}">GoAWAY</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'authapp:login' %}">ВАйТи</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <span><a href="#">🇷🇺</a> <i class="fas fa-grip-lines-vertical"></i> <a href="#">🇬🇧</a></span>
             </div>
