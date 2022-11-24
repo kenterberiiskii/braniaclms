@@ -1,0 +1,15 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block welcome-msg %}
+    text
+    {{ block.super }}
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name">
+        <a href="{% url 'admin:index' %}">Будь ПИТОНИЧНЫМ и не будь токсичным</a>
+        <img src="{% static 'img/logo.png' %}">
+    </h1>
+{% endblock %}
+
