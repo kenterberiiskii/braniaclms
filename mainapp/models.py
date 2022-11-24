@@ -2,19 +2,39 @@ from django.db import models
 
 NULLABLE = {'blank': True, 'null': True}
 
-class News(models.Model):
+
+class BaseModel(models.Model):
+    created_at = models.DateField(auto_now_add=True, verbose_name='Создан')
+    update_at = models.DateTimeField(auto_now=True, verbose_name='Обновлен')
+    deleted = models.BooleanField(default=False, verbose_name='Удалено')
+
+    class Meta:
+        abstract = True
+        ordering = ('-created_at')
+
+class NewsManager(models.Manager):
+
+    def delete(self):
+        pass
+
+    def get_queryset(self):
+        return super().get_queryset().filter(deleted=False)
+
+class News(BaseModel):
+    # object = NewsManager()
+
     title = models.CharField(max_length=256, verbose_name='Заголовок')
     preamble = models.CharField(max_length=1024, verbose_name='Интро')
 
     body = models.TextField(verbose_name='Содержимое')
     body_as_markdown = models.BooleanField(default=False, verbose_name='Разметка в формате марк...')
 
-    created_at = models.DateField(auto_now_add=True, verbose_name='Создан')
-    update_at = models.DateTimeField(auto_now=True, verbose_name='Обновлен')
-    deleted = models.BooleanField(default=False, verbose_name='Удалено')
+    # created_at = models.DateField(auto_now_add=True, verbose_name='Создан')
+    # update_at = models.DateTimeField(auto_now=True, verbose_name='Обновлен')
+    # deleted = models.BooleanField(default=False, verbose_name='Удалено')
 
-    def __str__(self):
-        return f'{self.title}'
+    def __str__(self) -> str:
+        return f'#{self.pk} - {self.title}'
 
     class Meta:
         verbose_name = 'новость'
@@ -36,7 +56,7 @@ class Course(models.Model):
     deleted = models.BooleanField(default=False, verbose_name='Удалено')
 
     def __str__(self):
-        return f'{self.title}'
+        return f'#{self.pk} - {self.title}'
     class Meta:
         verbose_name = 'курс'
         verbose_name_plural = 'курсы'
