@@ -1,4 +1,5 @@
 {% extends 'mainapp/base.html' %}
+{% load static markdownify %}
 {% load crispy_forms_tags %}
 
 {% load static  %}
@@ -14,7 +15,7 @@
         <div class="row h-100">
             <div class="col-12">
                 {% if course_object.description_as_markdown %}
-                {{ course_object.description }}
+                {{ course_object.description|markdownify }}
                 {% else %}
                 {{ course_object.description }}
                 {% endif %}
