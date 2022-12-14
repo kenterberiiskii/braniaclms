@@ -11,6 +11,7 @@ from django.views.generic import TemplateView, ListView, UpdateView, DetailView,
 from datetime import datetime
 from django.shortcuts import get_object_or_404
 
+from mainapp import forms as mainapp_forms
 from mainapp.forms import CourseFeedbackForm
 from mainapp.models import News, Course, Lesson, CourseTeacher, CourseFeedback
 
@@ -85,7 +86,7 @@ class LoginView(TemplateView):
 
 class NewsListView(ListView):
     model = News
-    paginate_by = 5
+    paginate_by = 2
 
     def get_queryset(self):
         return super().get_queryset().filter(deleted=False)
@@ -176,6 +177,7 @@ class LogDownloadView(UserPassesTestMixin, View):
         return self.request.user.is_superuser
     def get(self, *args, **kwargs):
         return FileResponse(open(settings.LOG_FILE, "rb"))
+
 
 class ContactsPageView(TemplateView):
     template_name = "mainapp/contacts.html"

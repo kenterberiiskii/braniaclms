@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -39,8 +40,8 @@ class News(BaseModel):
         return f'#{self.pk} - {self.title}'
 
     class Meta:
-        verbose_name = 'новость'
-        verbose_name_plural = 'новости'
+        verbose_name = _("News")
+        verbose_name_plural = _("News")
 
     def delete(self, *args, **kwargs):
         self.deleted = True
