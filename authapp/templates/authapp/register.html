@@ -2,50 +2,51 @@
 {% block content %}
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <p>
-        <input type="text" name="username" autofocus=""
-               autocapitalize="none" autocomplete="username"
-               maxlength="150" class="textinput textInput form-control"
-               required="" id="id_username" placeholder="Username">
-    </p>
-    <p>
-        <input type="text" name="email" autofocus=""
-               autocapitalize="none" autocomplete="Soap"
-               maxlength="150" class="textinput textInput form-control"
-               required="" id="id_email" placeholder="Email">
-    </p>
-    <p>
-        <input type="password" name="password1"
-               autocomplete="current-password"
-               class="textinput textInput form-control" required=""
-               id="id_password" placeholder="Password">
-    </p>
-    <p>
-        <input type="password" name="password2"
-               autocomplete="current-password"
-               class="textinput textInput form-control" required=""
-               id="id_password2" placeholder="Password confirm">
-    </p>
+    {{ form.as_p }}
+<!--    <p>-->
+<!--        <input type="text" name="username" autofocus=""-->
+<!--               autocapitalize="none" autocomplete="username"-->
+<!--               maxlength="150" class="textinput textInput form-control"-->
+<!--               required="" id="id_username" placeholder="Username">-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        <input type="text" name="email" autofocus=""-->
+<!--               autocapitalize="none" autocomplete="Soap"-->
+<!--               maxlength="150" class="textinput textInput form-control"-->
+<!--               required="" id="id_email" placeholder="Email">-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        <input type="password" name="password1"-->
+<!--               autocomplete="current-password"-->
+<!--               class="textinput textInput form-control" required=""-->
+<!--               id="id_password" placeholder="Password">-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        <input type="password" name="password2"-->
+<!--               autocomplete="current-password"-->
+<!--               class="textinput textInput form-control" required=""-->
+<!--               id="id_password2" placeholder="Password confirm">-->
+<!--    </p>-->
 
-    <p>
-        <input type="text" name="first_name" autocapitalize="none"
-               maxlength="150" class="textinput textInput form-control"
-               required=""  placeholder="First name">
-    </p>
-    <p>
-        <input type="text" name="last_name" autocapitalize="none"
-               maxlength="150" class="textinput textInput form-control"
-               required=""  placeholder="Last name">
-    </p>
-    <p>
-        <input type="number" name="age" autocapitalize="none"
-               class="textinput textInput form-control"
-               required=""  placeholder="Age">
-    </p>
-    <p>
-        <input type="file" name="avatars" class="textinput textInput form-control"
-               required=""  placeholder="Avatar">
-    </p>
+<!--    <p>-->
+<!--        <input type="text" name="first_name" autocapitalize="none"-->
+<!--               maxlength="150" class="textinput textInput form-control"-->
+<!--               required=""  placeholder="First name">-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        <input type="text" name="last_name" autocapitalize="none"-->
+<!--               maxlength="150" class="textinput textInput form-control"-->
+<!--               required=""  placeholder="Last name">-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        <input type="number" name="age" autocapitalize="none"-->
+<!--               class="textinput textInput form-control"-->
+<!--               required=""  placeholder="Age">-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        <input type="file" name="avatars" class="textinput textInput form-control"-->
+<!--               required=""  placeholder="Avatar">-->
+<!--    </p>-->
     <p>
         <button type="submit" class="btn btn-primary btn-block">Регимся
         </button>
